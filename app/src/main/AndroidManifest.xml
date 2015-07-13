@@ -2,19 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.felipe.spotifystreamer_stageone" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".SampleSearchActivity" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.TopTracksActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".activities.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".adapters.ArtistArrayAdapter"
+            android:label="@string/title_activity_my_array_adapter" >
         </activity>
     </application>
 
