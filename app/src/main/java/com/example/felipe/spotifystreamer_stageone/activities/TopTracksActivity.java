@@ -99,6 +99,10 @@ public class TopTracksActivity extends AppCompatActivity {
             public void success(Tracks tracks, Response response) {
                 List<Track> listOfTracks = tracks.tracks;
 
+                if(listOfTracks.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "Ops, no tracks found. Try again!", Toast.LENGTH_LONG).show();
+                }
+
                 for (Track item : listOfTracks) {
                     MyTracks track = new MyTracks();
                     track.setName(item.name);
