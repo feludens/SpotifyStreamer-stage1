@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.felipe.spotifystreamer_stageone.R;
 import com.example.felipe.spotifystreamer_stageone.adapters.TracksArrayAdapter;
+import com.example.felipe.spotifystreamer_stageone.helpers.BitmapUtil;
 import com.example.felipe.spotifystreamer_stageone.models.MyTracks;
 
 import java.io.InputStream;
@@ -111,7 +112,7 @@ public class TopTracksActivity extends AppCompatActivity {
                         final String url = item.album.images.get(0).url;
                         new DownloadAlbumCover(track).execute(url);
                     } else {
-                        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.album_art_missing);
+                        Bitmap bitmap = BitmapUtil.INSTANCE.getPlaceholder();
                         track.setCoverImage(bitmap);
                     }
                     mTracks.add(track);
@@ -146,7 +147,7 @@ public class TopTracksActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... url) {
             try {
-                coverImage = BitmapFactory.decodeStream((InputStream) new URL(url[0]).getContent());
+                coverImage = BitmapUtil.INSTANCE.decodeUrl(url[0]);
 
             } catch (Exception e) {
                 e.printStackTrace();

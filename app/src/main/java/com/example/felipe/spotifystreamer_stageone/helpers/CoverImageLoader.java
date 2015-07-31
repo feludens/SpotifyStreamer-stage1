@@ -1,17 +1,9 @@
 package com.example.felipe.spotifystreamer_stageone.helpers;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.felipe.spotifystreamer_stageone.R;
 import com.example.felipe.spotifystreamer_stageone.activities.MainActivity;
 
 import java.io.InputStream;

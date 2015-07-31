@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.felipe.spotifystreamer_stageone.R;
 import com.example.felipe.spotifystreamer_stageone.adapters.ArtistArrayAdapter;
+import com.example.felipe.spotifystreamer_stageone.helpers.BitmapUtil;
 import com.example.felipe.spotifystreamer_stageone.models.ArtistResults;
 import java.io.InputStream;
 import java.net.URL;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        BitmapUtil.INSTANCE.setContext(getApplicationContext());
 
         albumsList = (ListView) findViewById(R.id.lvAlbums);
         etSearchArtist = (EditText) findViewById(R.id.etSearchArtist);
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         final String url = element.images.get(0).url;
                         new DownloadAlbumCover(artistResults).execute(url);
                     } else {
-                        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.album_art_missing);
+                        Bitmap bitmap = BitmapUtil.INSTANCE.getPlaceholder();
                         artistResults.setAlbumCover(bitmap);
                     }
                     mArtistResults.add(artistResults);
@@ -196,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... url) {
             try {
-                coverImage = BitmapFactory.decodeStream((InputStream) new URL(url[0]).getContent());
+                coverImage = BitmapUtil.INSTANCE.decodeUrl(url[0]);
 
             } catch (Exception e) {
                 e.printStackTrace();
