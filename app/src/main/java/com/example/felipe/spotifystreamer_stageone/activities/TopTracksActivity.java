@@ -173,4 +173,3 @@ public class TopTracksActivity extends AppCompatActivity {
     }
 
 }
-
